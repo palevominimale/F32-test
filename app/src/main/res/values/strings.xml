@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">F32 test</string>
+    <string name="category_null">unknown</string>
+    <string name="search_text">Search</string>
+</resources>
