@@ -11,7 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import app.seals.f32test.ui.main.MainActivityViewModel
+import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.models.categories.CategoryItemModel
 import app.seals.f32test.ui.states.UiState.IsLoading
 import app.seals.f32test.ui.states.UiState.IsReady
@@ -23,8 +23,8 @@ fun CategoriesSelector(vm: MainActivityViewModel) {
 
     when (state) {
         is IsReady -> CategoriesRow(
-            list = (state as IsReady).items as List<CategoryItemModel>,
-            selected = (state as IsReady).selected,
+            list = (state as IsReady).categories,
+            selected = (state as IsReady).selectedCategory,
             placeholders = false)
         else -> {}
     }

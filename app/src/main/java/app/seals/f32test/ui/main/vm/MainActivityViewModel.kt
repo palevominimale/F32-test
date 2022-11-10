@@ -1,4 +1,4 @@
-package app.seals.f32test.ui.main
+package app.seals.f32test.ui.main.vm
 
 import androidx.lifecycle.viewModelScope
 import app.seals.f32test.ui.sampledata.DataPump
