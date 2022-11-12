@@ -1,4 +1,4 @@
-package app.seals.f32test.ui.screens.main.hotsales
+package app.seals.f32test.ui.screens.main
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -20,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
@@ -126,13 +126,20 @@ private fun MainText(title: String, subtitle: String) {
             Text(text = title, color = Color.White)
         }
         Box {
-            Text(text = subtitle, color = Color.Black,
+            Text(
+                text = subtitle,
+                color = Color.Black,
+                style = Typography.labelMedium,
                 modifier = Modifier
                     .blur(20.dp)
                     .alpha(0.5f)
-                    .offset(x = 0.5.dp, y = 0.5.dp)
+                    .offset(x = 0.5.dp, y = 0.5.dp),
             )
-            Text(text = subtitle, color = Color.White)
+            Text(
+                text = subtitle,
+                color = Color.White,
+                style = Typography.labelMedium.copy(fontWeight = FontWeight.Thin),
+            )
         }
     }
 

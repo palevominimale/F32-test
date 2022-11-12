@@ -9,8 +9,9 @@ import androidx.compose.ui.unit.sp
 import app.seals.f32test.R
 
 val fonts = FontFamily(
-    Font(R.font.mark_pro),
-    Font(R.font.mark_pro, weight = FontWeight.Bold),
+    Font(R.font.mark_pro_medium),
+    Font(R.font.mark_pro_heavy, weight = FontWeight.ExtraBold),
+    Font(R.font.mark_pro_bold, weight = FontWeight.Bold),
     Font(R.font.mark_pro, weight = FontWeight.Light),
     Font(R.font.mark_pro, weight = FontWeight.Thin),
 )
@@ -18,9 +19,8 @@ val fonts = FontFamily(
 val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = fonts,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp,
         letterSpacing = 0.5.sp),
 
     titleLarge = TextStyle(

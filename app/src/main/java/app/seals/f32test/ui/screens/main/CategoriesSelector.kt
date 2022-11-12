@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package app.seals.f32test.ui.screens.main.categories
+package app.seals.f32test.ui.screens.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.models.categories.CategoryItemModel
-import app.seals.f32test.ui.states.UiState.IsLoading
 import app.seals.f32test.ui.states.UiState.IsReady
 import app.seals.f32test.ui.theme.Typography
 import com.google.accompanist.placeholder.placeholder
@@ -43,12 +42,11 @@ fun CategoriesSelector(vm: MainActivityViewModel) {
 }
 
 @Composable
-fun CategoriesRow(list: List<CategoryItemModel>, selected: String?, placeholders: Boolean) {
+private fun CategoriesRow(list: List<CategoryItemModel>, selected: String?, placeholders: Boolean) {
     Surface(
         modifier = Modifier.padding(vertical = 16.dp)
     ) {
         Column {
-
             Text(
                 text = stringResource(id = R.string.main_select_category),
                 modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
@@ -65,7 +63,7 @@ fun CategoriesRow(list: List<CategoryItemModel>, selected: String?, placeholders
 }
 
 @Composable
-fun CategoryItem(item: CategoryItemModel?, placeholders: Boolean, selected: Boolean) {
+private fun CategoryItem(item: CategoryItemModel?, placeholders: Boolean, selected: Boolean) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,

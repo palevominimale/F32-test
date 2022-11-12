@@ -5,8 +5,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.screens.main.bestseller.BestSeller
-import app.seals.f32test.ui.screens.main.categories.CategoriesSelector
-import app.seals.f32test.ui.screens.main.hotsales.HotSales
 import app.seals.f32test.ui.screens.main.search.SearchField
 
 @Composable
