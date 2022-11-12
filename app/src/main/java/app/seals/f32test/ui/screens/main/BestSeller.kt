@@ -19,7 +19,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -47,9 +49,9 @@ fun BestSeller(vm: MainActivityViewModel) {
 }
 @Composable
 private fun BestSellerView(list: List<BestSellerItemModel>) {
-    val state = rememberLazyGridState()
     val width = LocalConfiguration.current.screenWidthDp
-    val height = (width/1.5*(list.size/2 + list.size%2)).dp
+    val height = ((width/1.5+17)*(list.size/2 + list.size%2)).dp
+
     Column {
         Text(
             text = stringResource(id = R.string.main_best_seller),
@@ -57,14 +59,13 @@ private fun BestSellerView(list: List<BestSellerItemModel>) {
             style = Typography.bodyLarge
         )
         LazyVerticalGrid(
-            state = state,
             userScrollEnabled = false,
             modifier = Modifier
                 .height(height),
             columns = GridCells.Fixed(2),
         ) {
             itemsIndexed(list) { _, item ->
-                BestSellerItemView(item, (width/1.7).dp)
+                BestSellerItemView(item, (width/1.5).dp)
             }
         }
     }
@@ -72,12 +73,13 @@ private fun BestSellerView(list: List<BestSellerItemModel>) {
 
 @Composable
 private fun BestSellerItemView(item: BestSellerItemModel, height: Dp) {
-
+    var hMeasured = height
+    val density = LocalDensity.current
     Column(
         modifier = Modifier
             .padding(8.dp)
-            .height(height)
             .fillMaxSize()
+            .height(height)
             .shadow(
                 elevation = 2.dp,
                 shape = RoundedCornerShape(16.dp)
@@ -85,7 +87,10 @@ private fun BestSellerItemView(item: BestSellerItemModel, height: Dp) {
             .background(
                 color = Color.White,
                 shape = RoundedCornerShape(16.dp)
-            ),
+            )
+            .onGloballyPositioned {
+                hMeasured = with(density) { it.size.height.toDp() }
+            },
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
     ) {
@@ -99,7 +104,7 @@ private fun BestSellerItemView(item: BestSellerItemModel, height: Dp) {
                 contentDescription = "",
                 modifier = Modifier
                     .clip(RoundedCornerShape(16.dp))
-                    .height(height-46.dp)
+                    .height(hMeasured-46.dp)
                     .fillMaxWidth(),
                 contentScale = ContentScale.Crop)
         }
