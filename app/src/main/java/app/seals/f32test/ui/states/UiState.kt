@@ -11,6 +11,7 @@ sealed interface UiState {
         val selectedCategory: String,
         val hotSales: List<HomeStoreItemModel>,
         val bestSeller: List<BestSellerItemModel>,
+        val showFilter: Boolean = true
     ) : UiState
     data class HasError(val code: Int?, val message: String?) : UiState
     data class HasException(val e: Throwable?) : UiState
