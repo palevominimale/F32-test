@@ -69,6 +69,7 @@ private fun Pager(list: List<HomeStoreItemModel>) {
                 .height(240.dp)
                 .padding(vertical = 16.dp)
         ) { page ->
+
             imgUrl.value = list[page].picture.toString()
             title.value = list[page].title.toString()
             subtitle.value = list[page].subtitle.toString()
@@ -107,8 +108,6 @@ private fun Pager(list: List<HomeStoreItemModel>) {
             }
         }
     }
-
-
 }
 
 @Composable

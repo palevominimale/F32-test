@@ -4,4 +4,5 @@
     <string name="search_text">Search</string>
     <string name="main_select_category">Select category</string>
     <string name="main_hot_sales">Hot Sales</string>
+    <string name="main_best_seller">Best Seller</string>
 </resources>

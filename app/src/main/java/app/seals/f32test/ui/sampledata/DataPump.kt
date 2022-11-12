@@ -51,7 +51,7 @@ object DataPump {
     private val listOfBestSellers = listOf(
         BestSellerItemModel(
             id = 111,
-            isFavorites = true,
+            isFavorites = false,
             title = "Samsung Galaxy s20 Ultra",
             priceWithoutDiscount = 1047,
             discountPrice = 1500,
@@ -71,16 +71,42 @@ object DataPump {
             title = "Samsung Note 20 Ultra",
             priceWithoutDiscount = 1047,
             discountPrice = 1500,
-            picture = "https://opt-1739925.ssl.1c-bitrix-cdn.ru/upload/iblock/c01/c014d088c28d45b606ed8c58e5817172.jpg?160405904823488"
+            picture = "https://mi92.ru/wp-content/uploads/2020/03/smartfon-xiaomi-mi-10-pro-12-256gb-global-version-starry-blue-sinij-1.jpg"
+            //doesn't loading picture = "https://opt-1739925.ssl.1c-bitrix-cdn.ru/upload/iblock/c01/c014d088c28d45b606ed8c58e5817172.jpg?160405904823488"
         ),
-        BestSellerItemModel(
-            id = 4444,
-            isFavorites = true,
-            title = "Motorola One Edge",
-            priceWithoutDiscount = 300,
-            discountPrice = 400,
-            picture = "https://www.benchmark.rs/assets/img/news/edge1.jpg"
-        ),
+//        BestSellerItemModel(
+//            id = 4444,
+//            isFavorites = true,
+//            title = "Motorola One Edge",
+//            priceWithoutDiscount = 300,
+//            discountPrice = 400,
+//            picture = "https://www.benchmark.rs/assets/img/news/edge1.jpg"
+//        ),
+//        BestSellerItemModel(
+//            id = 55,
+//            isFavorites = false,
+//            title = "Samsung Galaxy s20 Ultra",
+//            priceWithoutDiscount = 1047,
+//            discountPrice = 1500,
+//            picture = "https://shop.gadgetufa.ru/images/upload/52534-smartfon-samsung-galaxy-s20-ultra-12-128-chernyj_1024.jpg"
+//        ),
+//        BestSellerItemModel(
+//            id = 66,
+//            isFavorites = true,
+//            title = "Xiaomi Mi 10 Pro",
+//            priceWithoutDiscount = 300,
+//            discountPrice = 400,
+//            picture = "https://mi92.ru/wp-content/uploads/2020/03/smartfon-xiaomi-mi-10-pro-12-256gb-global-version-starry-blue-sinij-1.jpg"
+//        ),
+//        BestSellerItemModel(
+//            id = 77,
+//            isFavorites = true,
+//            title = "Samsung Note 20 Ultra",
+//            priceWithoutDiscount = 1047,
+//            discountPrice = 1500,
+//            picture = "https://mi92.ru/wp-content/uploads/2020/03/smartfon-xiaomi-mi-10-pro-12-256gb-global-version-starry-blue-sinij-1.jpg"
+//            //doesn't loading picture = "https://opt-1739925.ssl.1c-bitrix-cdn.ru/upload/iblock/c01/c014d088c28d45b606ed8c58e5817172.jpg?160405904823488"
+//        ),
     )
 
     val state = UiState.IsReady(
