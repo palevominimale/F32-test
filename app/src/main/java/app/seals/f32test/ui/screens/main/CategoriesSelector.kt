@@ -3,6 +3,8 @@
 package app.seals.f32test.ui.screens.main
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -10,9 +12,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -43,6 +43,7 @@ fun CategoriesSelector(vm: MainActivityViewModel) {
 
 @Composable
 private fun CategoriesRow(list: List<CategoryItemModel>, selected: String?, placeholders: Boolean) {
+    val selectedItem = remember { mutableStateOf(0) }
     Surface(
         modifier = Modifier.padding(vertical = 16.dp)
     ) {
@@ -53,8 +54,13 @@ private fun CategoriesRow(list: List<CategoryItemModel>, selected: String?, plac
                 style = Typography.bodyLarge
             )
             LazyRow {
-                itemsIndexed(list) { _, it ->
-                    CategoryItem(item = it, placeholders = placeholders, selected = it.title == selected)
+                itemsIndexed(list) { index, it ->
+                    CategoryItem(
+                        item = it,
+                        placeholders = placeholders,
+                        selected = selectedItem.value == index,
+                        select = {selectedItem.value = index}
+                    )
                 }
             }
         }
@@ -63,11 +69,22 @@ private fun CategoriesRow(list: List<CategoryItemModel>, selected: String?, plac
 }
 
 @Composable
-private fun CategoryItem(item: CategoryItemModel?, placeholders: Boolean, selected: Boolean) {
+private fun CategoryItem(
+    item: CategoryItemModel?,
+    placeholders: Boolean,
+    selected: Boolean,
+    select: () -> Unit
+) {
+    val interactionSource = remember { MutableInteractionSource() }
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(PaddingValues(start = 16.dp, top = 8.dp))
+        modifier = Modifier
+            .padding(PaddingValues(start = 16.dp, top = 8.dp))
+            .clickable(
+                indication = null,
+                interactionSource = interactionSource
+            ) { select() }
     ) {
         Box(modifier = Modifier
             .size(60.dp)

@@ -2,6 +2,7 @@ package app.seals.f32test.ui.screens.details
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
@@ -23,7 +24,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Light
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -132,7 +132,9 @@ private fun ImagesRow(item: DetailsModel = DataPump.detailsModel, modifier: Modi
 }
 
 @Composable
-private fun ItemCard(item: DetailsModel, modifier: Modifier = Modifier) {
+private fun ItemCard(
+    item: DetailsModel,
+    modifier: Modifier = Modifier) {
     val tabItems = listOf(
         "Shop",
         "Details",
@@ -181,11 +183,14 @@ private fun ItemCard(item: DetailsModel, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun LabelRow(isFavorite: Boolean, label: String) {
+private fun LabelRow(
+    isFavorite: Boolean,
+    label: String,
+    modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
     ) {
@@ -212,7 +217,9 @@ private fun LabelRow(isFavorite: Boolean, label: String) {
 }
 
 @Composable
-private fun RatingStartsRow(rating: Double?, modifier: Modifier = Modifier) {
+private fun RatingStartsRow(
+    rating: Double?,
+    modifier: Modifier = Modifier) {
     if (rating != null) {
         Row(modifier = modifier
             .padding(horizontal = 12.dp, vertical = 0.dp)
@@ -235,7 +242,9 @@ private fun RatingStartsRow(rating: Double?, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun TabsRow(tabItems: List<String>, modifier: Modifier = Modifier) {
+private fun TabsRow(
+    tabItems: List<String>,
+    modifier: Modifier = Modifier) {
 
     var tabIndex by remember { mutableStateOf(0) }
 
@@ -273,7 +282,9 @@ private fun TabsRow(tabItems: List<String>, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun SpecsRow(item: DetailsModel, modifier: Modifier = Modifier) {
+private fun SpecsRow(
+    item: DetailsModel,
+    modifier: Modifier = Modifier) {
 
     val types = listOf(
         item.CPU,
@@ -330,6 +341,7 @@ private fun ColorSelector(
 ) {
     val selectedColorIndex = remember { mutableStateOf(0)}
     val selectedMemoryIndex = remember { mutableStateOf(0)}
+    val interactionSource = remember { MutableInteractionSource() }
 
     Column(
         modifier = modifier
@@ -345,16 +357,19 @@ private fun ColorSelector(
             Row(
                 modifier = Modifier.fillMaxWidth(0.5f)
             ) {
-                colors.forEachIndexed { index, s ->
+                colors.forEachIndexed { index, color ->
                     Surface(
                         modifier = Modifier
                             .size(50.dp)
                             .padding(8.dp)
-                            .clickable {
+                            .clickable(
+                                indication = null,
+                                interactionSource = interactionSource
+                            ) {
                                 selectedColorIndex.value = index
                             },
                         shape = CircleShape,
-                        color = Color(colors[index].toColorInt())
+                        color = Color(color.toColorInt())
                     ) {
                         Icon(
                             imageVector = Icons.Outlined.Done,
@@ -379,7 +394,10 @@ private fun ColorSelector(
                             .height(50.dp)
                             .width(80.dp)
                             .padding(8.dp)
-                            .clickable {
+                            .clickable(
+                                indication = null,
+                                interactionSource = interactionSource
+                            )  {
                                 selectedMemoryIndex.value = index
                             },
                         shape = RoundedCornerShape(10.dp),
@@ -407,7 +425,9 @@ private fun ColorSelector(
 }
 
 @Composable
-private fun AddToCart(price: String = "", modifier: Modifier = Modifier) {
+private fun AddToCart(
+    price: String,
+    modifier: Modifier = Modifier) {
     Button(
         onClick = { /*TODO*/ },
         shape = RoundedCornerShape(10.dp),

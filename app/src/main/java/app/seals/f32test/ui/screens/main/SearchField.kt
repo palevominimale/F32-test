@@ -1,4 +1,4 @@
-package app.seals.f32test.ui.screens.main.search
+package app.seals.f32test.ui.screens.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

@@ -1,6 +1,8 @@
 package app.seals.f32test.ui.screens.main
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -26,28 +28,38 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.models.BestSellerItemModel
+import app.seals.f32test.ui.sampledata.DataPump
 import app.seals.f32test.ui.states.UiState
 import app.seals.f32test.ui.theme.Typography
 import coil.compose.AsyncImage
 
 @Composable
-fun BestSeller(vm: MainActivityViewModel) {
+@Preview
+fun BestSeller(vm: MainActivityViewModel = DataPump.vm) {
 
     val state : UiState by vm.state.collectAsState()
 
     when(state) {
-        is UiState.IsReady -> { BestSellerView((state as UiState.IsReady).bestSeller) }
+        is UiState.IsReady -> {
+            BestSellerView(
+                list = (state as UiState.IsReady).bestSeller,
+                onSelect = { vm.select(it) }
+            )
+        }
         else -> {}
     }
 }
 @Composable
-private fun BestSellerView(list: List<BestSellerItemModel>) {
+private fun BestSellerView(
+    list: List<BestSellerItemModel>,
+    onSelect: (Int) -> Unit) {
     val width = LocalConfiguration.current.screenWidthDp
     val height = ((width/1.5+17)*(list.size/2 + list.size%2)).dp
 
@@ -64,20 +76,35 @@ private fun BestSellerView(list: List<BestSellerItemModel>) {
             columns = GridCells.Fixed(2),
         ) {
             itemsIndexed(list) { _, item ->
-                BestSellerItemView(item, (width/1.5).dp)
+                BestSellerItemView(
+                    item = item,
+                    height = (width/1.5).dp,
+                    onSelect = { onSelect(it) }
+                )
             }
         }
     }
 }
 
 @Composable
-private fun BestSellerItemView(item: BestSellerItemModel, height: Dp) {
+private fun BestSellerItemView(
+    item: BestSellerItemModel,
+    height: Dp,
+    onSelect: (Int) -> Unit
+) {
     var hMeasured = height
     val density = LocalDensity.current
+    val interactionSource = MutableInteractionSource()
     Column(
         modifier = Modifier
             .padding(8.dp)
-            .fillMaxSize()
+            .clickable(
+                indication = null,
+                interactionSource = interactionSource
+            ) {
+                onSelect(item.id ?: 0)
+            }
+                    .fillMaxSize()
             .height(height)
             .shadow(
                 elevation = 2.dp,
@@ -95,7 +122,6 @@ private fun BestSellerItemView(item: BestSellerItemModel, height: Dp) {
     ) {
         Box(
             contentAlignment = Alignment.TopEnd,
-//            modifier = Modifier.height(height)
         ) {
             LabelFavorite(item.isFavorites ?: false)
             AsyncImage(

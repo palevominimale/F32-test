@@ -114,7 +114,7 @@ object DataPump {
         categories = listOfCategories,
         selectedCategory = listOfCategories[0].title ?: "",
         hotSales = listOfHotSales,
-        bestSeller = listOfBestSellers
+        bestSeller = listOfBestSellers,
     )
 
     val vm = @SuppressLint("StaticFieldLeak")
