@@ -191,7 +191,7 @@ private fun LabelRow(isFavorite: Boolean, label: String) {
     ) {
         Text(
             text = label,
-            style = Typography.bodyLarge.copy(fontWeight = FontWeight.Light)
+            style = Typography.bodyLarge.copy(fontWeight = Light)
         )
         Surface(
             modifier = Modifier
