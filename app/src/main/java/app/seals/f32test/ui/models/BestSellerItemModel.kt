@@ -1,4 +1,4 @@
-package app.seals.f32test.ui.models.bestseller
+package app.seals.f32test.ui.models
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

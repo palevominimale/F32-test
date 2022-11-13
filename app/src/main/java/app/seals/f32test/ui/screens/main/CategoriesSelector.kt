@@ -23,7 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
-import app.seals.f32test.ui.models.categories.CategoryItemModel
+import app.seals.f32test.ui.models.CategoryItemModel
 import app.seals.f32test.ui.states.UiState.IsReady
 import app.seals.f32test.ui.theme.Typography
 import com.google.accompanist.placeholder.placeholder

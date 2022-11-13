@@ -1,4 +1,4 @@
-package app.seals.f32test.ui.models.categories
+package app.seals.f32test.ui.models
 
 data class CategoryItemModel(
     val title: String? = null,

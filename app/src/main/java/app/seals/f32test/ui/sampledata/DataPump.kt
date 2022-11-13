@@ -3,8 +3,9 @@ package app.seals.f32test.ui.sampledata
 import android.annotation.SuppressLint
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
-import app.seals.f32test.ui.models.bestseller.BestSellerItemModel
-import app.seals.f32test.ui.models.categories.CategoryItemModel
+import app.seals.f32test.ui.models.BestSellerItemModel
+import app.seals.f32test.ui.models.CategoryItemModel
+import app.seals.f32test.ui.models.DetailsModel
 import app.seals.f32test.ui.models.hotsales.HomeStoreItemModel
 import app.seals.f32test.ui.states.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -120,4 +121,28 @@ object DataPump {
     object : MainActivityViewModel() {
         override val state = MutableStateFlow<UiState>(this@DataPump.state)
     }
+
+    val detailsModel = DetailsModel(
+        CPU = "Exynos 990",
+        camera = "108 + 12 mp",
+        capacity = arrayListOf(
+            "128",
+            "256"
+        ),
+        color = arrayListOf(
+            "#772D03",
+            "#010035"
+        ),
+        id = "3",
+        images = arrayListOf(
+            "https://avatars.mds.yandex.net/get-mpic/5235334/img_id5575010630545284324.png/orig",
+            "https://www.manualspdf.ru/thumbs/products/l/1260237-samsung-galaxy-note-20-ultra.jpg"
+        ),
+        isFavorites = true,
+        price = 1500,
+        rating = 2.5,
+        sd = "256 GB",
+        ssd = "8 GB",
+        title = "Galaxy Note 20 Ultra"
+    )
 }

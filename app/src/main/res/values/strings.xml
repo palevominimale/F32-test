@@ -14,4 +14,7 @@
     <string name="filter_brand_apple">Apple</string>
     <string name="filter_brand_samsung">Samsung</string>
     <string name="filter_brand_xiaomi">Xiaomi</string>
+    <string name="details_top">Product details</string>
+    <string name="details_select_color">Select color and capacity</string>
+    <string name="details_add_to_cart">Add to cart</string>
 </resources>

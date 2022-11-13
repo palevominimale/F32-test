@@ -20,7 +20,9 @@ fun MainScreen(vm: MainActivityViewModel) {
         if (showFilterDialog.value) item {
             FilterOptions(
                 show = showFilterDialog.value,
-                onDismiss = { showFilterDialog.value = false },
+                onDismiss = {
+                    showFilterDialog.value = false
+                            },
             )}
         item { CategoriesSelector(vm) }
         item { SearchField() }

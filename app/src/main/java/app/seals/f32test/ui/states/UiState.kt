@@ -1,7 +1,7 @@
 package app.seals.f32test.ui.states
 
-import app.seals.f32test.ui.models.bestseller.BestSellerItemModel
-import app.seals.f32test.ui.models.categories.CategoryItemModel
+import app.seals.f32test.ui.models.BestSellerItemModel
+import app.seals.f32test.ui.models.CategoryItemModel
 import app.seals.f32test.ui.models.hotsales.HomeStoreItemModel
 
 sealed interface UiState {

@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main">#FFFF6E4E</color>
     <color name="secondary">#FF010035</color>
+    <color name="stars">#FFFFB800</color>
 </resources>
