@@ -10,13 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import app.seals.f32test.R
 import app.seals.f32test.ui.theme.Typography
 
 @Composable
-fun LocationAndFilter() {
+fun LocationAndFilter( show: () -> Unit) {
     Box(
         modifier = Modifier
             .padding(start = 16.dp, end = 16.dp, top = 16.dp)
@@ -50,7 +49,7 @@ fun LocationAndFilter() {
             modifier = Modifier
                 .size(16.dp)
                 .clickable {
-
+                    show()
                 },
             painter = painterResource(id = R.drawable.ic_outline_filter_alt_24),
             tint = Color.Black,

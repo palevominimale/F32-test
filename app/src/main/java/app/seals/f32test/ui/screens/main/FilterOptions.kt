@@ -24,46 +24,61 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import app.seals.f32test.R
-import app.seals.f32test.ui.main.vm.MainActivityViewModel
-import app.seals.f32test.ui.states.UiState
 import app.seals.f32test.ui.theme.Typography
 
 @Composable
-fun FilterOptions(vm: MainActivityViewModel) {
 
-    val state by vm.state.collectAsState()
+fun FilterOptions(
+    onDismiss: () -> Unit,
+    show: Boolean
+) {
+    val showDialog = remember { mutableStateOf(show)}
 
-    when(state) {
-        is UiState.IsReady -> {
-            if((state as UiState.IsReady).showFilter) FilterOptionsView()
+    if(showDialog.value) {
+        Dialog(
+            onDismissRequest =
+            {
+                showDialog.value = false
+                onDismiss()
+           },
+            properties = DialogProperties(
+                dismissOnBackPress = true,
+                dismissOnClickOutside = true
+            )
+        ) {
+            FilterOptionsView { showDialog.value = false }
         }
-        else -> {}
     }
 }
 
 @Composable
-@Preview
-private fun FilterOptionsView() {
+private fun FilterOptionsView(onDismiss: () -> Unit) {
     Surface(
+        color = Color.White,
+        shape = RoundedCornerShape(30.dp),
         modifier = Modifier
             .fillMaxWidth()
             .shadow(
                 elevation = 5.dp,
                 shape = RoundedCornerShape(30.dp)
             )
-            .background(
-                color = Color.White,
-                shape = RoundedCornerShape(30.dp)
-            )
+
     ) {
         Column(
-            modifier = Modifier.padding(start = 32.dp, end = 32.dp, top = 16.dp, bottom = 32.dp),
+            modifier = Modifier
+                .padding(
+                    start = 32.dp,
+                    end = 32.dp,
+                    top = 16.dp,
+                    bottom = 32.dp
+                ),
         ) {
-            TopRow()
+            TopRow(onDismiss)
             Text(
                 modifier = Modifier
                     .padding(top = 32.dp, bottom = 8.dp),
@@ -113,7 +128,7 @@ private fun FilterOptionsView() {
 }
 
 @Composable
-private fun TopRow() {
+private fun TopRow(onDismiss: () -> Unit) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -125,7 +140,8 @@ private fun TopRow() {
             modifier = Modifier
                 .size(40.dp),
             contentPadding = PaddingValues(0.dp),
-            onClick = { /*TODO*/ },
+            onClick = { onDismiss() },
+            enabled = true,
             colors = ButtonDefaults
                 .buttonColors(containerColor = colorResource(id = R.color.secondary))
         ) {
@@ -144,7 +160,8 @@ private fun TopRow() {
         Button(
             modifier = Modifier
                 .height(40.dp),
-            onClick = { /*TODO*/ },
+            onClick = { onDismiss() },
+            enabled = true,
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults
                 .buttonColors(containerColor = colorResource(id = R.color.main))) {
@@ -216,7 +233,7 @@ private fun DropdownList(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
                 modifier = Modifier
-                    .width(with(LocalDensity.current){textFieldSize.width.toDp()})
+                    .width(with(LocalDensity.current) { textFieldSize.width.toDp() })
                     .background(color = Color.Unspecified, shape = RoundedCornerShape(20.dp))
             ) {
                 items.forEach { label ->
