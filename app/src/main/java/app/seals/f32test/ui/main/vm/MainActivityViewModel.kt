@@ -28,4 +28,10 @@ open class MainActivityViewModel : BaseViewModel() {
             state.emit(DataPump.stateDetails)
         }
     }
+
+    fun goCart() {
+        viewModelScope.launch {
+            state.emit(DataPump.stateCart)
+        }
+    }
 }

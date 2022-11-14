@@ -116,13 +116,10 @@ object DataPump {
         hotSales = listOfHotSales,
         bestSeller = listOfBestSellers,
     )
-
-
     val vm = @SuppressLint("StaticFieldLeak")
     object : MainActivityViewModel() {
         override val state = MutableStateFlow<UiState>(this@DataPump.state)
     }
-
     val detailsModel = DetailsModel(
         CPU = "Exynos 990",
         camera = "108 + 12 mp",
@@ -149,5 +146,14 @@ object DataPump {
 
     val stateDetails = UiState.DetailsReady(
         item = detailsModel
+    )
+
+    val cartList = listOf(
+        detailsModel,
+        detailsModel,
+        detailsModel
+    )
+    val stateCart = UiState.CartReady(
+        items = cartList
     )
 }

@@ -5,4 +5,5 @@
     <color name="main">#FFFF6E4E</color>
     <color name="secondary">#FF010035</color>
     <color name="stars">#FFFFB800</color>
+    <color name="quantity_background">#FF282843</color>
 </resources>

@@ -3,9 +3,7 @@ package app.seals.f32test.ui.screens.main
 import android.util.Log
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
-import androidx.compose.runtime.internal.composableLambda
 import androidx.navigation.NavController
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.navigation.NavigationItem
@@ -30,11 +28,9 @@ private fun ShowMainScreen(
     listStateStorage: LazyListState
 ) {
     val showFilterDialog = remember { mutableStateOf(false) }
-
     LazyColumn(
         state = listStateStorage
     ) {
-
         if (showFilterDialog.value) item {
             FilterOptions(
                 show = showFilterDialog.value,

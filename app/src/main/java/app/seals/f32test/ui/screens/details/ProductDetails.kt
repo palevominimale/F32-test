@@ -1,10 +1,10 @@
 package app.seals.f32test.ui.screens.details
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,6 +35,7 @@ import androidx.navigation.NavController
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.models.DetailsModel
+import app.seals.f32test.ui.navigation.NavigationItem
 import app.seals.f32test.ui.sampledata.DataPump
 import app.seals.f32test.ui.theme.Typography
 import coil.compose.AsyncImage
@@ -47,23 +48,30 @@ fun ProductDetails(
     vm: MainActivityViewModel = DataPump.vm,
     navController: NavController = NavController(LocalContext.current)
 ) {
-    Log.e("DS_", "Details screen has been shown")
-    Column(
+    LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        TopRow(
-            onDismiss = {},
-            modifier = Modifier
-                .padding(16.dp)
-        )
-        ImagesRow(item)
-        ItemCard(item)
+        item {
+            TopRow(
+                onDismiss = { navController.navigate(NavigationItem.Home.route) },
+                onCart = { navController.navigate(NavigationItem.Cart.route) },
+                modifier = Modifier
+                    .padding(16.dp)
+            )
+        }
+        item {
+            ImagesRow(item)
+        }
+        item {
+            ItemCard(item)
+        }
     }
 }
 
 @Composable
 private fun TopRow(
     onDismiss: () -> Unit,
+    onCart: () -> Unit,
     modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -98,7 +106,7 @@ private fun TopRow(
             modifier = Modifier
                 .size(40.dp),
             contentPadding = PaddingValues(0.dp),
-            onClick = { onDismiss() },
+            onClick = { onCart() },
             enabled = true,
             shape = RoundedCornerShape(10.dp),
             colors = ButtonDefaults
@@ -153,13 +161,14 @@ private fun ItemCard(
     )
     Surface(
         modifier = modifier
+            .padding(bottom = 16.dp)
             .background(
                 color = Color.White,
-                shape = RoundedCornerShape(24.dp)
+                shape = RoundedCornerShape(30.dp)
             )
             .shadow(
                 elevation = 5.dp,
-                shape = RoundedCornerShape(24.dp)
+                shape = RoundedCornerShape(30.dp)
             )
             .fillMaxWidth()
     ) {

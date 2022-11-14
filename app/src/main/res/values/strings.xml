@@ -1,20 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">F32 test</string>
-    <string name="category_null">unknown</string>
-    <string name="search_text">Search</string>
-    <string name="main_select_category">Select category</string>
-    <string name="main_hot_sales">Hot Sales</string>
-    <string name="main_best_seller">Best Seller</string>
-    <string name="bottom_explorer">Explorer</string>
-    <string name="filter_options">Filter options</string>
-    <string name="filter_done">Done</string>
-    <string name="filter_brand">Brand</string>
-    <string name="filter_price">Price</string>
-    <string name="filter_size">Size</string>
-    <string name="filter_brand_apple" tools:keep="@string/filter_brand_apple">Apple</string>
-    <string name="filter_brand_samsung" tools:keep="@string/filter_brand_samsung">Samsung</string>
-    <string name="filter_brand_xiaomi" tools:keep="@string/filter_brand_xiaomi">Xiaomi</string>
-    <string name="details_top">Product details</string>
-    <string name="details_select_color">Select color and capacity</string>
-    <string name="details_add_to_cart">Add to cart</string>
+    <string name="app_name" translatable="false">F32 test</string>
+    <string name="category_null" translatable="false">unknown</string>
+    <string name="search_text" translatable="false">Search</string>
+    <string name="main_select_category" translatable="false">Select category</string>
+    <string name="main_hot_sales" translatable="false">Hot Sales</string>
+    <string name="main_best_seller" translatable="false">Best Seller</string>
+    <string name="bottom_explorer" translatable="false">Explorer</string>
+    <string name="filter_options" translatable="false">Filter options</string>
+    <string name="filter_done" translatable="false">Done</string>
+    <string name="filter_brand" translatable="false">Brand</string>
+    <string name="filter_price" translatable="false">Price</string>
+    <string name="filter_size" translatable="false">Size</string>
+    <string name="filter_brand_apple" tools:keep="@string/filter_brand_apple" translatable="false">Apple</string>
+    <string name="filter_brand_samsung" tools:keep="@string/filter_brand_samsung" translatable="false">Samsung</string>
+    <string name="filter_brand_xiaomi" tools:keep="@string/filter_brand_xiaomi" translatable="false">Xiaomi</string>
+    <string name="details_top" translatable="false">Product details</string>
+    <string name="details_select_color" translatable="false">Select color and capacity</string>
+    <string name="details_add_to_cart" translatable="false">Add to cart</string>
+    <string name="cart_add" translatable="false">Add address</string>
+    <string name="cart_my">My cart</string>
+    <string name="cart_total">Total:</string>
+    <string name="cart_total_price">4500</string>
+    <string name="cart_delivery">Delivery</string>
+    <string name="cart_delivery_free">Free</string>
+    <string name="cart_checkout">Checkout</string>
 </resources>

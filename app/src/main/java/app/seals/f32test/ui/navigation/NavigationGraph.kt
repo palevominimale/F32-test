@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
+import app.seals.f32test.ui.sampledata.DataPump
+import app.seals.f32test.ui.screens.cart.CartScreen
 import app.seals.f32test.ui.screens.details.ProductDetails
 import app.seals.f32test.ui.screens.main.MainScreen
 import app.seals.f32test.ui.states.UiState
@@ -26,11 +28,15 @@ fun NavigationGraph(
             vm.goDetails()
             ProductDetails(
                 vm = vm,
-                item = (vm.state.value as UiState.DetailsReady).item
+                item = (vm.state.value as UiState.DetailsReady).item,
+                navController = navController
             )
         }
         composable(NavigationItem.Cart.route) {
-//            vm.goCart()
+            vm.goCart()
+            CartScreen(
+                list = DataPump.cartList
+            )
         }
     }
 }
