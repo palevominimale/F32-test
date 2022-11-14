@@ -9,7 +9,6 @@ import androidx.compose.runtime.*
 import androidx.navigation.NavController
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.navigation.NavigationItem
-import app.seals.f32test.ui.sampledata.DataPump
 import app.seals.f32test.ui.states.UiState
 
 @Composable
@@ -19,8 +18,7 @@ fun MainScreen(vm: MainActivityViewModel, navController: NavController) {
         is UiState.MainReady -> {
                 ShowMainScreen(
                     uiState = state.value as UiState.MainReady,
-                    vm = vm,
-                    navController
+                    navController = navController
                 )
             }
         else -> {}
@@ -30,7 +28,6 @@ fun MainScreen(vm: MainActivityViewModel, navController: NavController) {
 @Composable
 private fun ShowMainScreen(
     uiState: UiState.MainReady,
-    vm: MainActivityViewModel = DataPump.vm,
     navController: NavController
 ) {
     val state = rememberLazyListState(initialFirstVisibleItemIndex = 0)
