@@ -8,8 +8,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
+import app.seals.f32test.ui.navigation.NavigationItem
 import app.seals.f32test.ui.sampledata.DataPump
-import app.seals.f32test.ui.screens.details.ProductDetails
 import app.seals.f32test.ui.states.UiState
 
 @Composable
@@ -19,14 +19,10 @@ fun MainScreen(vm: MainActivityViewModel, navController: NavController) {
         is UiState.MainReady -> {
                 ShowMainScreen(
                     uiState = state.value as UiState.MainReady,
-                    vm = vm)
+                    vm = vm,
+                    navController
+                )
             }
-        is UiState.DetailsReady -> {
-            ProductDetails(
-                item = (state.value as UiState.DetailsReady).item,
-                vm = vm
-            )
-        }
         else -> {}
     }
 }
@@ -34,10 +30,11 @@ fun MainScreen(vm: MainActivityViewModel, navController: NavController) {
 @Composable
 private fun ShowMainScreen(
     uiState: UiState.MainReady,
-    vm: MainActivityViewModel = DataPump.vm
+    vm: MainActivityViewModel = DataPump.vm,
+    navController: NavController
 ) {
     val state = rememberLazyListState(initialFirstVisibleItemIndex = 0)
-    val showFilterDialog = remember { mutableStateOf(false)}
+    val showFilterDialog = remember { mutableStateOf(false) }
 
     LazyColumn(
         state = state
@@ -54,7 +51,9 @@ private fun ShowMainScreen(
         item { CategoriesSelector(uiState.categories) }
         item { SearchField() }
         item { HotSales(uiState.hotSales) }
-        item { BestSeller(uiState.bestSeller) { vm.select(it) } }
+        item { BestSeller(uiState.bestSeller) {
+            navController.navigate(NavigationItem.Details.route)
+        } }
 
     }
 }

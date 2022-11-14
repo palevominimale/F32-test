@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
+import androidx.navigation.NavController
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.models.DetailsModel
@@ -45,7 +46,8 @@ import kotlin.math.roundToInt
 @Preview
 fun ProductDetails(
     item: DetailsModel = DataPump.detailsModel,
-    vm: MainActivityViewModel = DataPump.vm
+    vm: MainActivityViewModel = DataPump.vm,
+    navController: NavController = NavController(LocalContext.current)
 ) {
     Log.e("DS_", "Details screen has been shown")
     Column(
