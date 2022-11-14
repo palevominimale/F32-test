@@ -10,17 +10,14 @@ import app.seals.f32test.ui.navigation.NavigationItem
 import app.seals.f32test.ui.states.UiState
 
 @Composable
-fun MainScreen(vm: MainActivityViewModel, navController: NavController) {
-    val state = vm.state.collectAsState()
-    when(state.value) {
-        is UiState.MainReady -> {
-                ShowMainScreen(
-                    uiState = state.value as UiState.MainReady,
-                    navController = navController
-                )
-            }
-        else -> {}
-    }
+fun MainScreen(
+    vm: MainActivityViewModel,
+    navController: NavController
+) {
+    ShowMainScreen(
+        uiState = vm.state.value as UiState.MainReady,
+        navController = navController
+    )
 }
 
 @Composable
