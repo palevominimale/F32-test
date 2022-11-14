@@ -24,25 +24,16 @@ import androidx.compose.ui.unit.dp
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.models.CategoryItemModel
-import app.seals.f32test.ui.states.UiState.IsReady
+import app.seals.f32test.ui.states.UiState
+import app.seals.f32test.ui.states.UiState.MainReady
 import app.seals.f32test.ui.theme.Typography
 import com.google.accompanist.placeholder.placeholder
 
 @Composable
-fun CategoriesSelector(vm: MainActivityViewModel) {
-    val state by vm.state.collectAsState()
-    when (state) {
-        is IsReady -> CategoriesRow(
-            list = (state as IsReady).categories,
-            selected = (state as IsReady).selectedCategory,
-            placeholders = false
-        )
-        else -> {}
-    }
-}
-
-@Composable
-private fun CategoriesRow(list: List<CategoryItemModel>, selected: String?, placeholders: Boolean) {
+fun CategoriesSelector(
+    list: List<CategoryItemModel>,
+    placeholders: Boolean = false
+) {
     val selectedItem = remember { mutableStateOf(0) }
     Surface(
         modifier = Modifier.padding(vertical = 16.dp)

@@ -22,7 +22,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import app.seals.f32test.R
-import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.models.hotsales.HomeStoreItemModel
 import app.seals.f32test.ui.states.UiState
 import app.seals.f32test.ui.theme.Typography
@@ -31,22 +30,12 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 
-@Composable
-fun HotSales(vm: MainActivityViewModel) {
-
-    val state by vm.state.collectAsState()
-
-    when(state) {
-        is UiState.IsReady -> Pager((state as UiState.IsReady).hotSales)
-        else -> {}
-    }
-
-
-}
-
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-private fun Pager(list: List<HomeStoreItemModel>) {
+fun HotSales(
+    list: List<HomeStoreItemModel>,
+    modifier: Modifier = Modifier
+) {
 
     val state = rememberPagerState()
     val imgUrl = remember { mutableStateOf("") }
@@ -58,7 +47,7 @@ private fun Pager(list: List<HomeStoreItemModel>) {
     Column {
         Text(
             text = stringResource(id = R.string.main_hot_sales),
-            modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp),
+            modifier = modifier.padding(start = 16.dp, end = 16.dp, top = 8.dp),
             style = Typography.bodyLarge
         )
         HorizontalPager(
@@ -111,10 +100,12 @@ private fun Pager(list: List<HomeStoreItemModel>) {
 }
 
 @Composable
-private fun MainText(title: String, subtitle: String) {
+private fun MainText(
+    title: String, subtitle: String,
+) {
     Column(
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.Start
+        horizontalAlignment = Alignment.Start,
     ) {
         Box {
             Text(text = title, color = Color.Black,

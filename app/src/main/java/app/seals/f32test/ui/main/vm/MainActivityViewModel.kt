@@ -13,10 +13,10 @@ open class MainActivityViewModel : BaseViewModel() {
         }
     }
 
-    open fun select(id: Int) {
+    fun select(id: Int) {
         Log.e("MAVM_", "selected $id")
         viewModelScope.launch {
-            state.emit(DataPump.state.copy(selectedItem = id))
+            state.emit(DataPump.stateDetails)
         }
     }
 }

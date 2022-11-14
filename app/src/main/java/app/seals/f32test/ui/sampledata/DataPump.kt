@@ -110,12 +110,13 @@ object DataPump {
         ),
     )
 
-    val state = UiState.IsReady(
+    val state = UiState.MainReady(
         categories = listOfCategories,
         selectedCategory = listOfCategories[0].title ?: "",
         hotSales = listOfHotSales,
         bestSeller = listOfBestSellers,
     )
+
 
     val vm = @SuppressLint("StaticFieldLeak")
     object : MainActivityViewModel() {
@@ -144,5 +145,9 @@ object DataPump {
         sd = "256 GB",
         ssd = "8 GB",
         title = "Galaxy Note 20 Ultra"
+    )
+
+    val stateDetails = UiState.DetailsReady(
+        item = detailsModel
     )
 }

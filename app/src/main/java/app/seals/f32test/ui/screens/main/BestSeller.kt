@@ -41,25 +41,10 @@ import app.seals.f32test.ui.theme.Typography
 import coil.compose.AsyncImage
 
 @Composable
-@Preview
-fun BestSeller(vm: MainActivityViewModel = DataPump.vm) {
-
-    val state : UiState by vm.state.collectAsState()
-
-    when(state) {
-        is UiState.IsReady -> {
-            BestSellerView(
-                list = (state as UiState.IsReady).bestSeller,
-                onSelect = { vm.select(it) }
-            )
-        }
-        else -> {}
-    }
-}
-@Composable
-private fun BestSellerView(
+fun BestSeller(
     list: List<BestSellerItemModel>,
-    onSelect: (Int) -> Unit) {
+    onSelect: (Int) -> Unit
+) {
     val width = LocalConfiguration.current.screenWidthDp
     val height = ((width/1.5+17)*(list.size/2 + list.size%2)).dp
 
@@ -165,7 +150,9 @@ private fun BestSellerItemView(
 }
 
 @Composable
-private fun LabelFavorite(isFavorite: Boolean) {
+private fun LabelFavorite(
+    isFavorite: Boolean
+) {
     Box(modifier = Modifier
         .padding(16.dp)
         .size(28.dp)

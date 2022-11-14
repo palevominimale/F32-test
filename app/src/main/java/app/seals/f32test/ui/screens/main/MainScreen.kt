@@ -1,3 +1,5 @@
+@file:Suppress("CAST_NEVER_SUCCEEDS")
+
 package app.seals.f32test.ui.screens.main
 
 import android.util.Log
@@ -5,30 +7,38 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
-import app.seals.f32test.ui.navigation.NavigationItem
+import app.seals.f32test.ui.sampledata.DataPump
+import app.seals.f32test.ui.screens.details.ProductDetails
 import app.seals.f32test.ui.states.UiState
 
 @Composable
 fun MainScreen(vm: MainActivityViewModel, navController: NavController) {
     val state = vm.state.collectAsState()
     when(state.value) {
-        is UiState.IsReady -> {
-            if((state.value as UiState.IsReady).selectedItem == -1) {
-                ShowMainScreen(vm)
-            } else {
-                navController.navigate(NavigationItem.Details.route)
+        is UiState.MainReady -> {
+                ShowMainScreen(
+                    uiState = state.value as UiState.MainReady,
+                    vm = vm)
             }
+        is UiState.DetailsReady -> {
+            ProductDetails(
+                item = (state.value as UiState.DetailsReady).item,
+                vm = vm
+            )
         }
         else -> {}
     }
 }
 
 @Composable
-private fun ShowMainScreen(vm: MainActivityViewModel) {
+private fun ShowMainScreen(
+    uiState: UiState.MainReady,
+    vm: MainActivityViewModel = DataPump.vm
+) {
     val state = rememberLazyListState(initialFirstVisibleItemIndex = 0)
     val showFilterDialog = remember { mutableStateOf(false)}
+
     LazyColumn(
         state = state
     ) {
@@ -37,13 +47,15 @@ private fun ShowMainScreen(vm: MainActivityViewModel) {
             FilterOptions(
                 show = showFilterDialog.value,
                 onDismiss = { showFilterDialog.value = false },
-            )}
+            )
+        }
         item { LocationAndFilter { showFilterDialog.value = true } }
         Log.e("MS_", "$showFilterDialog")
-        item { CategoriesSelector(vm) }
+        item { CategoriesSelector(uiState.categories) }
         item { SearchField() }
-        item { HotSales(vm) }
-        item { BestSeller(vm) }
+        item { HotSales(uiState.hotSales) }
+        item { BestSeller(uiState.bestSeller) { vm.select(it) } }
+
     }
 }
 

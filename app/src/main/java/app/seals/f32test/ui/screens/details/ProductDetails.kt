@@ -1,5 +1,6 @@
 package app.seals.f32test.ui.screens.details
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -21,6 +22,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -30,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
 import app.seals.f32test.R
+import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.models.DetailsModel
 import app.seals.f32test.ui.sampledata.DataPump
 import app.seals.f32test.ui.theme.Typography
@@ -38,21 +43,28 @@ import kotlin.math.roundToInt
 
 @Composable
 @Preview
-fun ProductDetails(item: DetailsModel = DataPump.detailsModel) {
+fun ProductDetails(
+    item: DetailsModel = DataPump.detailsModel,
+    vm: MainActivityViewModel = DataPump.vm
+) {
+    Log.e("DS_", "Details screen has been shown")
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         TopRow(
             onDismiss = {},
             modifier = Modifier
-                .padding(16.dp))
+                .padding(16.dp)
+        )
         ImagesRow(item)
         ItemCard(item)
     }
 }
 
 @Composable
-private fun TopRow(onDismiss: () -> Unit, modifier: Modifier = Modifier) {
+private fun TopRow(
+    onDismiss: () -> Unit,
+    modifier: Modifier = Modifier) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -103,10 +115,10 @@ private fun TopRow(onDismiss: () -> Unit, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun ImagesRow(item: DetailsModel = DataPump.detailsModel, modifier: Modifier = Modifier) {
-
+private fun ImagesRow(
+    item: DetailsModel = DataPump.detailsModel,
+    modifier: Modifier = Modifier) {
     val width = LocalConfiguration.current.screenWidthDp*0.7
-
     LazyRow(
         modifier = modifier
             .padding(vertical = 16.dp),
@@ -128,7 +140,6 @@ private fun ImagesRow(item: DetailsModel = DataPump.detailsModel, modifier: Modi
             }
         }
     }
-
 }
 
 @Composable
@@ -245,9 +256,7 @@ private fun RatingStartsRow(
 private fun TabsRow(
     tabItems: List<String>,
     modifier: Modifier = Modifier) {
-
     var tabIndex by remember { mutableStateOf(0) }
-
     TabRow(
         modifier = modifier,
         selectedTabIndex = 0,
@@ -285,21 +294,18 @@ private fun TabsRow(
 private fun SpecsRow(
     item: DetailsModel,
     modifier: Modifier = Modifier) {
-
     val types = listOf(
         item.CPU,
         item.camera,
         item.ssd,
         item.sd
     )
-
     val icons = listOf(
         painterResource(id = R.drawable.ic_outline_memory_24),
         painterResource(id = R.drawable.ic_cam),
         painterResource(id = R.drawable.ic_ram),
         painterResource(id = R.drawable.ic_outline_sd_storage_24)
     )
-
     Row(
         modifier = modifier
             .fillMaxWidth(),
@@ -319,7 +325,6 @@ private fun SpecsRow(
                     tint = Color.LightGray
                 )
                 Text(
-//                modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
                     text = s.toString(),
                     style = Typography.labelSmall.copy(
@@ -342,7 +347,6 @@ private fun ColorSelector(
     val selectedColorIndex = remember { mutableStateOf(0)}
     val selectedMemoryIndex = remember { mutableStateOf(0)}
     val interactionSource = remember { MutableInteractionSource() }
-
     Column(
         modifier = modifier
     ) {
@@ -421,7 +425,6 @@ private fun ColorSelector(
             }
         }
     }
-
 }
 
 @Composable
