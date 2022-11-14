@@ -1,8 +1,7 @@
-package app.seals.f32test.ui.screens.main.bottombar
+package app.seals.f32test.ui.screens.main
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -17,11 +16,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import app.seals.f32test.R
-import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.theme.Typography
 
 @Composable
-fun BottomBar(vm: MainActivityViewModel) {
+fun BottomBar() {
     Surface(
         shape = RoundedCornerShape(20.dp),
         color = colorResource(R.color.secondary),

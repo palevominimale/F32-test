@@ -16,6 +16,4 @@ sealed interface UiState {
         val selectedItem: Int = -1
     ) : UiState
     data class DetailsReady(val item: DetailsModel) : UiState
-    data class HasError(val code: Int?, val message: String?) : UiState
-    data class HasException(val e: Throwable?) : UiState
 }

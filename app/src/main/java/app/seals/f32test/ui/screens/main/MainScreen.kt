@@ -1,5 +1,3 @@
-@file:Suppress("CAST_NEVER_SUCCEEDS")
-
 package app.seals.f32test.ui.screens.main
 
 import android.util.Log
@@ -36,7 +34,6 @@ private fun ShowMainScreen(
     LazyColumn(
         state = state
     ) {
-
         if (showFilterDialog.value) item {
             FilterOptions(
                 show = showFilterDialog.value,
@@ -48,10 +45,11 @@ private fun ShowMainScreen(
         item { CategoriesSelector(uiState.categories) }
         item { SearchField() }
         item { HotSales(uiState.hotSales) }
-        item { BestSeller(uiState.bestSeller) {
-            navController.navigate(NavigationItem.Details.route)
-        } }
-
+        item {
+            BestSeller(uiState.bestSeller) {
+                navController.navigate(NavigationItem.Details.route)
+            }
+        }
     }
 }
 

@@ -12,7 +12,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -22,10 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import app.seals.f32test.R
-import app.seals.f32test.ui.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.models.CategoryItemModel
-import app.seals.f32test.ui.states.UiState
-import app.seals.f32test.ui.states.UiState.MainReady
 import app.seals.f32test.ui.theme.Typography
 import com.google.accompanist.placeholder.placeholder
 
