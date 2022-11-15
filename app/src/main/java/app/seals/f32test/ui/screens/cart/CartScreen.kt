@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -25,7 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.seals.f32test.R
-import app.seals.f32test.ui.models.DetailsModel
+import app.seals.f32test.ui.models.cart.CartItem
+import app.seals.f32test.ui.models.cart.CartResponse
 import app.seals.f32test.ui.sampledata.DataPump
 import app.seals.f32test.ui.theme.Typography
 import coil.compose.AsyncImage
@@ -33,19 +35,19 @@ import coil.compose.AsyncImage
 @Composable
 @Preview
 fun CartScreen(
-    list: List<DetailsModel> = DataPump.cartList,
+    cart: CartResponse = DataPump.cartResponse,
     onDismiss: () -> Unit = {},
-    onLocation: () -> Unit = {},
+//    onLocation: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
             TopRow(
-                onDismiss = {},
-                onLocation = {}
+                onDismiss = { onDismiss() },
+                onLocation = { onDismiss() }
             )
 
-            CartContainer(list = list)
+            CartContainer(cart = cart)
 
     }
 }
@@ -109,7 +111,7 @@ private fun TopRow(
 
 @Composable
 private fun CartContainer(
-    list: List<DetailsModel>
+    cart: CartResponse
 ) {
     Column(
         modifier = Modifier
@@ -131,7 +133,7 @@ private fun CartContainer(
                 verticalArrangement = Arrangement.SpaceBetween
                     ) {
                 LazyColumn {
-                    list.forEach { item ->
+                    cart.basket.forEach { item ->
                         item{ CartItem(item = item) }
                     }
                 }
@@ -145,7 +147,7 @@ private fun CartContainer(
                             .height(2.dp),
                         content = {}
                     )
-                    val price = "$${stringResource(id = R.string.cart_total_price)} us"
+                    val price = "$${cart.total} us"
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         modifier = Modifier
@@ -180,7 +182,7 @@ private fun CartContainer(
                                 )
                             )
                             Text(
-                                text = stringResource(id = R.string.cart_delivery_free),
+                                text = cart.delivery.toString(),
                                 style = Typography.labelMedium.copy(
                                     color = Color.White,
                                     fontWeight = FontWeight.Medium
@@ -222,8 +224,7 @@ private fun CartContainer(
 }
 
 @Composable
-private fun CartItem(item: DetailsModel) {
-
+private fun CartItem(item: CartItem) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -233,10 +234,11 @@ private fun CartItem(item: DetailsModel) {
     ) {
         Row {
             AsyncImage(
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(80.dp)
-                    .clip(RoundedCornerShape(10.dp)),
-                model = item.images[0],
+                    .clip(RoundedCornerShape(20.dp)),
+                model = item.images,
                 contentDescription = null
             )
             Column(

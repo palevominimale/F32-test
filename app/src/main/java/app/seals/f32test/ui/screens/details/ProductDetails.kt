@@ -46,15 +46,18 @@ import kotlin.math.roundToInt
 fun ProductDetails(
     item: DetailsModel = DataPump.detailsModel,
     vm: MainActivityViewModel = DataPump.vm,
-    navController: NavController = NavController(LocalContext.current)
+    onDismiss: () -> Unit = {},
+    onCart: () -> Unit = {},
 ) {
     LazyColumn(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier.fillMaxHeight()
     ) {
         item {
             TopRow(
-                onDismiss = { navController.navigate(NavigationItem.Home.route) },
-                onCart = { navController.navigate(NavigationItem.Cart.route) },
+                onDismiss = { onDismiss() },
+                onCart = { onCart() },
                 modifier = Modifier
                     .padding(16.dp)
             )
@@ -78,7 +81,7 @@ private fun TopRow(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
+//            .padding(horizontal = 16.dp)
     ) {
         Button(
             shape = RoundedCornerShape(10.dp),
@@ -161,7 +164,7 @@ private fun ItemCard(
     )
     Surface(
         modifier = modifier
-            .padding(bottom = 16.dp)
+//            .padding(bottom = 16.dp)
             .background(
                 color = Color.White,
                 shape = RoundedCornerShape(30.dp)

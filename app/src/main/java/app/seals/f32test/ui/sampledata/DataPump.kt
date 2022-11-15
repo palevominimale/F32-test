@@ -3,10 +3,12 @@ package app.seals.f32test.ui.sampledata
 import android.annotation.SuppressLint
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
-import app.seals.f32test.ui.models.BestSellerItemModel
-import app.seals.f32test.ui.models.CategoryItemModel
-import app.seals.f32test.ui.models.DetailsModel
-import app.seals.f32test.ui.models.hotsales.HomeStoreItemModel
+import app.seals.f32test.ui.models.*
+import app.seals.f32test.ui.models.base.BaseResponse
+import app.seals.f32test.ui.models.base.HomeStoreItemModel
+import app.seals.f32test.ui.models.base.BestSellerItemModel
+import app.seals.f32test.ui.models.cart.CartItem
+import app.seals.f32test.ui.models.cart.CartResponse
 import app.seals.f32test.ui.states.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -16,14 +18,10 @@ object DataPump {
         CategoryItemModel("Computer", R.drawable.ic_baseline_computer_24, selected = false),
         CategoryItemModel("Health", R.drawable.ic_baseline_health_and_safety_24, selected = false),
         CategoryItemModel("Books", R.drawable.ic_baseline_library_books_24, selected = false),
-        CategoryItemModel("Hearts", R.drawable.ic_baseline_favorite_border_24, selected = false),
-        CategoryItemModel("Phones1", R.drawable.ic_outline_phone_iphone_24, selected = false),
-        CategoryItemModel("Computer1", R.drawable.ic_baseline_computer_24, selected = false),
-        CategoryItemModel("Health1", R.drawable.ic_baseline_health_and_safety_24, selected = false),
-        CategoryItemModel("Books1", R.drawable.ic_baseline_library_books_24, selected = false),
-        CategoryItemModel("Hearts1", R.drawable.ic_baseline_favorite_border_24, selected = false),
+        CategoryItemModel("Hearts", R.drawable.ic_baseline_favorite_border_24, selected = false)
     )
-    private val listOfHotSales = listOf(
+
+    private val listOfHotSales = arrayListOf(
         HomeStoreItemModel(
             id = 1,
             isNew = true,
@@ -49,7 +47,7 @@ object DataPump {
             isBuy = true
         ),
     )
-    private val listOfBestSellers = listOf(
+    private val listOfBestSellers = arrayListOf(
         BestSellerItemModel(
             id = 111,
             isFavorites = false,
@@ -112,14 +110,17 @@ object DataPump {
 
     val state = UiState.MainReady(
         categories = listOfCategories,
-        selectedCategory = listOfCategories[0].title ?: "",
-        hotSales = listOfHotSales,
-        bestSeller = listOfBestSellers,
+        apiResponse = BaseResponse(
+            homeStore = listOfHotSales,
+            bestSeller = listOfBestSellers
+        )
     )
+
     val vm = @SuppressLint("StaticFieldLeak")
     object : MainActivityViewModel() {
         override val state = MutableStateFlow<UiState>(this@DataPump.state)
     }
+
     val detailsModel = DetailsModel(
         CPU = "Exynos 990",
         camera = "108 + 12 mp",
@@ -148,12 +149,27 @@ object DataPump {
         item = detailsModel
     )
 
-    val cartList = listOf(
-        detailsModel,
-        detailsModel,
-        detailsModel
+    val cartResponse = CartResponse(
+        basket = arrayListOf(
+            CartItem(
+                id = 1,
+                images = "https://www.manualspdf.ru/thumbs/products/l/1260237-samsung-galaxy-note-20-ultra.jpg",
+                price = 1500,
+                title = "Galaxy Note 20 Ultra",
+            ),
+            CartItem(
+                id = 2,
+                images = "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-13-pro-silver-select?wid=470&hei=556&fmt=jpeg&qlt=95&.v=1631652954000",
+                price = 1800,
+                title = "iPhone 13",
+            ),
+        ),
+        delivery = "Free",
+        id = "4",
+        total = 3300
     )
+
     val stateCart = UiState.CartReady(
-        items = cartList
+        cart = cartResponse
     )
 }

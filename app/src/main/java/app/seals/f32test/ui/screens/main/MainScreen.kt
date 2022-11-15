@@ -41,9 +41,9 @@ private fun ShowMainScreen(
         Log.e("MS_", "$showFilterDialog")
         item { CategoriesSelector(uiState.categories) }
         item { SearchField() }
-        item { HotSales(uiState.hotSales) }
+        item { HotSales(uiState.apiResponse?.homeStore ?: emptyList()) }
         item {
-            BestSeller(uiState.bestSeller) {
+            BestSeller(uiState.apiResponse?.bestSeller ?: emptyList()) {
                 navController.navigate(NavigationItem.Details.route)
             }
         }

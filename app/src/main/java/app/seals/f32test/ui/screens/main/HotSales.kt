@@ -24,7 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import app.seals.f32test.R
-import app.seals.f32test.ui.models.hotsales.HomeStoreItemModel
+import app.seals.f32test.ui.models.base.HomeStoreItemModel
 import app.seals.f32test.ui.theme.Typography
 import coil.compose.rememberAsyncImagePainter
 import com.google.accompanist.pager.ExperimentalPagerApi

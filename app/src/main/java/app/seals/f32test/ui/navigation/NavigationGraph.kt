@@ -1,6 +1,7 @@
 package app.seals.f32test.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavDirections
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -29,13 +30,15 @@ fun NavigationGraph(
             ProductDetails(
                 vm = vm,
                 item = (vm.state.value as UiState.DetailsReady).item,
-                navController = navController
+                onDismiss = { navController.popBackStack() },
+                onCart = { navController.navigate(NavigationItem.Cart.route) }
             )
         }
         composable(NavigationItem.Cart.route) {
             vm.goCart()
             CartScreen(
-                list = DataPump.cartList
+                cart = DataPump.cartResponse,
+                onDismiss = { navController.popBackStack() }
             )
         }
     }
