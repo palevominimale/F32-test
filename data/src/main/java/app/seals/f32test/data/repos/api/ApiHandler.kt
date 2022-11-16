@@ -5,7 +5,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 
 object ApiHandler {
-    fun <T: Any> handleApi(
+    suspend fun <T: Any> handleApi(
         execute: () -> Response<T>
     ) : ApiResult {
         return try {

@@ -35,7 +35,7 @@ class RemoteApiImpl : RemoteApi {
             is ApiResult.ApiSuccess -> ApiResult.ApiSuccess(data = res.data)
             is ApiResult.ApiError -> ApiResult.ApiError(code = res.code, message = res.message)
             is ApiResult.ApiException -> ApiResult.ApiException(e = res.e)
-            else -> {ApiResult.ApiError()}
+            else -> { ApiResult.ApiError() }
         }
     }
 

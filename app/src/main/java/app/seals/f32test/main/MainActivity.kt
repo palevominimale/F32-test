@@ -1,4 +1,4 @@
-package app.seals.f32test.ui.main
+package app.seals.f32test.main
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,7 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import app.seals.f32test.ui.main.vm.MainActivityViewModel
+import app.seals.f32test.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.navigation.NavigationGraph
 import app.seals.f32test.ui.screens.main.BottomBar
 import app.seals.f32test.ui.states.UiState

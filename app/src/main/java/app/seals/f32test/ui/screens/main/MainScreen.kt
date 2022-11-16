@@ -5,7 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
-import app.seals.f32test.ui.main.vm.MainActivityViewModel
+import app.seals.f32test.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.navigation.NavigationItem
 import app.seals.f32test.ui.states.UiState
 

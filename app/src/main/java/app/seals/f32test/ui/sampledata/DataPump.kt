@@ -2,7 +2,7 @@ package app.seals.f32test.ui.sampledata
 
 import android.annotation.SuppressLint
 import app.seals.f32test.R
-import app.seals.f32test.ui.main.vm.MainActivityViewModel
+import app.seals.f32test.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.states.UiState
 import app.seals.f32test.entities.DetailsModel
 import app.seals.f32test.entities.base.BaseResponse

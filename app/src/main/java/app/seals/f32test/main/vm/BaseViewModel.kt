@@ -1,4 +1,4 @@
-package app.seals.f32test.ui.main.vm
+package app.seals.f32test.main.vm
 
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.lifecycle.ViewModel

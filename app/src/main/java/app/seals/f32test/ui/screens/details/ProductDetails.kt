@@ -31,7 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
 import app.seals.f32test.R
-import app.seals.f32test.ui.main.vm.MainActivityViewModel
+import app.seals.f32test.main.vm.MainActivityViewModel
 import app.seals.f32test.entities.DetailsModel
 import app.seals.f32test.ui.sampledata.DataPump
 import app.seals.f32test.ui.theme.Typography
