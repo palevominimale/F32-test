@@ -24,7 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import app.seals.f32test.R
-import app.seals.f32test.ui.models.CategoryItemModel
+import app.seals.f32test.ui.screens.CategoryItemModel
 import app.seals.f32test.ui.theme.Typography
 import com.google.accompanist.placeholder.placeholder
 

@@ -3,13 +3,14 @@ package app.seals.f32test.ui.sampledata
 import android.annotation.SuppressLint
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
-import app.seals.f32test.ui.models.*
-import app.seals.f32test.ui.models.base.BaseResponse
-import app.seals.f32test.ui.models.base.HomeStoreItemModel
-import app.seals.f32test.ui.models.base.BestSellerItemModel
-import app.seals.f32test.ui.models.cart.CartItem
-import app.seals.f32test.ui.models.cart.CartResponse
 import app.seals.f32test.ui.states.UiState
+import app.seals.f32test.entities.DetailsModel
+import app.seals.f32test.entities.base.BaseResponse
+import app.seals.f32test.entities.base.BestSellerItemModel
+import app.seals.f32test.entities.base.HomeStoreItemModel
+import app.seals.f32test.entities.cart.CartItem
+import app.seals.f32test.entities.cart.CartResponse
+import app.seals.f32test.ui.screens.CategoryItemModel
 import kotlinx.coroutines.flow.MutableStateFlow
 
 object DataPump {

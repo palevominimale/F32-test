@@ -26,8 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.seals.f32test.R
-import app.seals.f32test.ui.models.cart.CartItem
-import app.seals.f32test.ui.models.cart.CartResponse
+import app.seals.f32test.entities.cart.CartItem
+import app.seals.f32test.entities.cart.CartResponse
 import app.seals.f32test.ui.sampledata.DataPump
 import app.seals.f32test.ui.theme.Typography
 import coil.compose.AsyncImage

@@ -53,9 +53,12 @@ dependencies {
     def koin= '3.2.0'
     def coroutines = "1.6.4"
     def room = '2.4.3'
-    def retrofit = '2.9.0'
     def accompanist = '0.27.0'
 
+
+    implementation project(':data')
+    implementation project(':domain')
+    implementation project(':entities')
     //Google
     implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist"
     implementation "com.google.accompanist:accompanist-placeholder:$accompanist"
@@ -70,10 +73,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation 'androidx.activity:activity-compose:1.6.1'
     implementation "androidx.navigation:navigation-compose:2.6.0-alpha03"
-
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
 
     //Coil
     implementation("io.coil-kt:coil-compose:2.2.2")
@@ -91,13 +90,6 @@ dependencies {
     kapt "androidx.room:room-compiler:$room"
     annotationProcessor "androidx.room:room-compiler:$room"
     implementation "androidx.room:room-runtime:$room"
-
-    //Firebase
-    implementation platform('com.google.firebase:firebase-bom:30.4.1')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-firestore-ktx'
-    implementation 'com.google.firebase:firebase-database-ktx'
-    implementation 'com.google.firebase:firebase-auth-ktx'
 
     //Test
     testImplementation 'junit:junit:4.13.2'

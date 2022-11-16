@@ -1,11 +1,9 @@
 package app.seals.f32test.ui.states
 
-import app.seals.f32test.ui.models.base.BestSellerItemModel
-import app.seals.f32test.ui.models.cart.CartResponse
-import app.seals.f32test.ui.models.CategoryItemModel
-import app.seals.f32test.ui.models.DetailsModel
-import app.seals.f32test.ui.models.base.BaseResponse
-import app.seals.f32test.ui.models.base.HomeStoreItemModel
+import app.seals.f32test.entities.DetailsModel
+import app.seals.f32test.entities.base.BaseResponse
+import app.seals.f32test.entities.cart.CartResponse
+import app.seals.f32test.ui.screens.CategoryItemModel
 
 sealed interface UiState {
     object IsLoading : UiState

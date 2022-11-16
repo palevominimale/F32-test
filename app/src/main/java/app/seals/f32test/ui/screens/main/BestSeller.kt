@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import app.seals.f32test.R
-import app.seals.f32test.ui.models.base.BestSellerItemModel
+import app.seals.f32test.entities.base.BestSellerItemModel
 import app.seals.f32test.ui.theme.Typography
 import coil.compose.AsyncImage
 

@@ -31,10 +31,28 @@ android {
 
 dependencies {
 
+    def koin= '3.2.0'
+    def coroutines = "1.6.4"
+    def retrofit = '2.9.0'
+
+    implementation project(':domain')
+    implementation project(':entities')
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+
+    //Koin
+    implementation "io.insert-koin:koin-core:$koin"
+    implementation "io.insert-koin:koin-androidx-workmanager:$koin"
+    implementation "io.insert-koin:koin-android:$koin"
+
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 }

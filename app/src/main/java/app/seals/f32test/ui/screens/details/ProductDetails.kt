@@ -22,7 +22,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -31,11 +30,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
-import androidx.navigation.NavController
 import app.seals.f32test.R
 import app.seals.f32test.ui.main.vm.MainActivityViewModel
-import app.seals.f32test.ui.models.DetailsModel
-import app.seals.f32test.ui.navigation.NavigationItem
+import app.seals.f32test.entities.DetailsModel
 import app.seals.f32test.ui.sampledata.DataPump
 import app.seals.f32test.ui.theme.Typography
 import coil.compose.AsyncImage
