@@ -1,18 +1,19 @@
 package app.seals.f32test.entities
 
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+
 data class DetailsModel (
-
-    var CPU         : String?           = null,
-    var camera      : String?           = null,
-    var capacity    : ArrayList<String> = arrayListOf(),
-    var color       : ArrayList<String> = arrayListOf(),
-    var id          : String?           = null,
-    var images      : ArrayList<String> = arrayListOf(),
-    var isFavorites : Boolean?          = null,
-    var price       : Int?              = null,
-    var rating      : Double?           = null,
-    var sd          : String?           = null,
-    var ssd         : String?           = null,
-    var title       : String?           = null
-
-)
+    @SerializedName("CPU")          var CPU         : String?           = null,
+    @SerializedName("camera")       var camera      : String?           = null,
+    @SerializedName("capacity")     var capacity    : ArrayList<String> = arrayListOf(),
+    @SerializedName("color")        var color       : ArrayList<String> = arrayListOf(),
+    @SerializedName("id")           var id          : String?           = null,
+    @SerializedName("images")       var images      : ArrayList<String> = arrayListOf(),
+    @SerializedName("isFavorites")  var isFavorites : Boolean?          = null,
+    @SerializedName("price")        var price       : Int?              = null,
+    @SerializedName("rating")       var rating      : Double?           = null,
+    @SerializedName("sd")           var sd          : String?           = null,
+    @SerializedName("ssd")          var ssd         : String?           = null,
+    @SerializedName("title")        var title       : String?           = null
+) : Serializable

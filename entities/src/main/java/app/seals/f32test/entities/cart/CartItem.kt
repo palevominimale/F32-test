@@ -1,8 +1,11 @@
 package app.seals.f32test.entities.cart
 
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+
 data class CartItem (
-   var id     : Int?    = null,
-   var images : String? = null,
-   var price  : Int?    = null,
-   var title  : String? = null
-)
+   @SerializedName("id")      var id     : Int?    = null,
+   @SerializedName("images")  var images : String? = null,
+   @SerializedName("price")   var price  : Int?    = null,
+   @SerializedName("title")   var title  : String? = null
+) : Serializable

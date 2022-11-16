@@ -14,11 +14,14 @@ fun MainScreen(
     vm: MainActivityViewModel,
     navController: NavController
 ) {
-    ShowMainScreen(
-        uiState = vm.state.value as UiState.MainReady,
-        navController = navController,
-        vm.listStateStorage
-    )
+    if(vm.state.value is UiState.MainReady) {
+        ShowMainScreen(
+            uiState = vm.state.value as UiState.MainReady,
+            navController = navController,
+            vm.listStateStorage
+        )
+    }
+
 }
 
 @Composable

@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
     private val vm : MainActivityViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vm.getData()
+//        vm.getData()
         setContent {
             F32TestTheme {
                 val navController = rememberNavController()

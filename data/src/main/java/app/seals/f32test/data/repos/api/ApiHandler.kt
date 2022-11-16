@@ -6,7 +6,7 @@ import retrofit2.Response
 
 object ApiHandler {
     suspend fun <T: Any> handleApi(
-        execute: () -> Response<T>
+        execute: suspend () -> Response<T>
     ) : ApiResult {
         return try {
             val response = execute()

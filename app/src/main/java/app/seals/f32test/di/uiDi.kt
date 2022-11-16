@@ -6,6 +6,10 @@ import org.koin.dsl.module
 
 val uiDi = module {
     viewModel {
-        MainActivityViewModel()
+        MainActivityViewModel(
+            getCart = get(),
+            getBase = get(),
+            getDetails = get()
+        )
     }
 }

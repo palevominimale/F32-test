@@ -1,6 +1,8 @@
 package app.seals.f32test.app
 
 import android.app.Application
+import app.seals.f32test.di.dataDi
+import app.seals.f32test.di.domainDi
 import app.seals.f32test.di.uiDi
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -14,7 +16,13 @@ class App : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@App)
-            modules(listOf(uiDi))
+            modules(
+                listOf(
+                    uiDi,
+                    domainDi,
+                    dataDi
+                )
+            )
         }
     }
 

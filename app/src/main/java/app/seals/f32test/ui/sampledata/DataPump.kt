@@ -2,6 +2,10 @@ package app.seals.f32test.ui.sampledata
 
 import android.annotation.SuppressLint
 import app.seals.f32test.R
+import app.seals.f32test.data.repos.RemoteApiImpl
+import app.seals.f32test.domain.usecase.GetBaseDataUseCase
+import app.seals.f32test.domain.usecase.GetCartUseCase
+import app.seals.f32test.domain.usecase.GetSelectedDetailsUseCase
 import app.seals.f32test.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.states.UiState
 import app.seals.f32test.entities.DetailsModel
@@ -118,7 +122,11 @@ object DataPump {
     )
 
     val vm = @SuppressLint("StaticFieldLeak")
-    object : MainActivityViewModel() {
+    object : MainActivityViewModel(
+        getBase = GetBaseDataUseCase(RemoteApiImpl()),
+        getDetails = GetSelectedDetailsUseCase(RemoteApiImpl()),
+        getCart = GetCartUseCase(RemoteApiImpl())
+    ) {
         override val state = MutableStateFlow<UiState>(this@DataPump.state)
     }
 

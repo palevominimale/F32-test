@@ -1,6 +1,7 @@
 package app.seals.f32test.ui.states
 
 import app.seals.f32test.entities.DetailsModel
+import app.seals.f32test.entities.api.ApiResult
 import app.seals.f32test.entities.base.BaseResponse
 import app.seals.f32test.entities.cart.CartResponse
 import app.seals.f32test.ui.screens.CategoryItemModel
