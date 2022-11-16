@@ -26,9 +26,9 @@ fun NavigationGraph(
         composable(NavigationItem.Details.route) {
             vm.goDetails()
             if(vm.state.value is UiState.DetailsReady) {
+                val item = (vm.state.value as UiState.DetailsReady).item
                 ProductDetails(
-                    vm = vm,
-                    item = (vm.state.value as UiState.DetailsReady).item,
+                    item = item,
                     onDismiss = { navController.popBackStack() },
                     onCart = { navController.navigate(NavigationItem.Cart.route) }
                 )
@@ -38,8 +38,9 @@ fun NavigationGraph(
         composable(NavigationItem.Cart.route) {
             vm.goCart()
             if(vm.state.value is UiState.CartReady) {
+                val cart = (vm.state.value as UiState.CartReady).cart
                 CartScreen(
-                    cart = (vm.state.value as UiState.CartReady).cart,
+                    cart = cart,
                     onDismiss = { navController.popBackStack() }
                 )
             }

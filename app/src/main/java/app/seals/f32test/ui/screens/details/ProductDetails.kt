@@ -42,7 +42,6 @@ import kotlin.math.roundToInt
 @Preview
 fun ProductDetails(
     item: DetailsModel = DataPump.detailsModel,
-    vm: MainActivityViewModel = DataPump.vm,
     onDismiss: () -> Unit = {},
     onCart: () -> Unit = {},
 ) {
