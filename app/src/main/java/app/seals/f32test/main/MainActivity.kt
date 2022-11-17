@@ -31,9 +31,7 @@ class MainActivity : ComponentActivity() {
                 val state by vm.state.collectAsState()
                 Scaffold(
                     bottomBar = {
-                        if(state !is UiState.Error) BottomBar(
-                            navController = navController
-                        )
+                        if(state is UiState.MainReady) BottomBar(navController = navController)
                     }
                 ) {
                     Surface(
