@@ -8,6 +8,7 @@ import app.seals.f32test.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.screens.cart.CartScreen
 import app.seals.f32test.ui.screens.details.ProductDetails
 import app.seals.f32test.ui.screens.main.MainScreen
+import app.seals.f32test.ui.screens.splash.SplashScreen
 import app.seals.f32test.ui.states.UiState
 
 @Composable
@@ -19,6 +20,9 @@ fun NavigationGraph(
         navController = navController,
         startDestination = "home"
     ) {
+        composable(NavigationItem.Splash.route) {
+            SplashScreen()
+        }
         composable(NavigationItem.Home.route) {
             vm.goMain()
             MainScreen(vm = vm, navController = navController)

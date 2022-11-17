@@ -44,7 +44,7 @@ open class MainActivityViewModel(
                 when(it) {
                     is ApiResult.ApiError -> {
                         Log.e("MAVM_api_err", "$it")
-                        state.emit(UiState.Error(it.code, it.message))
+//                        state.emit(UiState.Error(it.code, it.message))
                     }
                     is ApiResult.ApiException -> {
                         Log.e("MAVM_api_exc", "$it")

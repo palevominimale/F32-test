@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import app.seals.f32test.main.vm.MainActivityViewModel
 import app.seals.f32test.ui.navigation.NavigationGraph
 import app.seals.f32test.ui.screens.main.BottomBar
+import app.seals.f32test.ui.screens.splash.SplashScreen
 import app.seals.f32test.ui.states.UiState
 import app.seals.f32test.ui.theme.F32TestTheme
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -39,6 +40,7 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(it)
                     ) {
+                        if(vm.state.value is UiState.Splash) SplashScreen()
                         NavigationGraph(
                             navController = navController,
                             vm = vm
