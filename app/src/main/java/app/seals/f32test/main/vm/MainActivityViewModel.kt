@@ -34,7 +34,8 @@ open class MainActivityViewModel(
         CategoryItemModel("Computer", R.drawable.ic_baseline_computer_24, selected = false),
         CategoryItemModel("Health", R.drawable.ic_baseline_health_and_safety_24, selected = false),
         CategoryItemModel("Books", R.drawable.ic_baseline_library_books_24, selected = false),
-        CategoryItemModel("Hearts", R.drawable.ic_baseline_favorite_border_24, selected = false)
+        CategoryItemModel("Hearts", R.drawable.ic_baseline_favorite_border_24, selected = false),
+        CategoryItemModel("Hearts", R.drawable.ic_baseline_favorite_border_24, selected = false),
     )
 
     init {
@@ -43,9 +44,11 @@ open class MainActivityViewModel(
                 when(it) {
                     is ApiResult.ApiError -> {
                         Log.e("MAVM_api_err", "$it")
+                        state.emit(UiState.Error(it.code, it.message))
                     }
                     is ApiResult.ApiException -> {
                         Log.e("MAVM_api_exc", "$it")
+                        state.emit(UiState.Exception(it.e))
                     }
                     is ApiResult.ApiSuccess -> {
                         Log.e("MAVM_api_scs", "$it")

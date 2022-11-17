@@ -1,11 +1,11 @@
 package app.seals.f32test.ui.screens.details
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -31,11 +32,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.toColorInt
 import app.seals.f32test.R
-import app.seals.f32test.main.vm.MainActivityViewModel
 import app.seals.f32test.entities.DetailsModel
 import app.seals.f32test.ui.sampledata.DataPump
 import app.seals.f32test.ui.theme.Typography
 import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.rememberPagerState
 import kotlin.math.roundToInt
 
 @Composable
@@ -121,31 +125,42 @@ private fun TopRow(
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 private fun ImagesRow(
     item: DetailsModel = DataPump.detailsModel,
-    modifier: Modifier = Modifier) {
-    val width = LocalConfiguration.current.screenWidthDp*0.7
-    LazyRow(
+    modifier: Modifier = Modifier
+) {
+    val state = rememberPagerState()
+    val imgUrl = remember { mutableStateOf("") }
+
+    HorizontalPager(
+        count = item.images.size,
+        state = state,
         modifier = modifier
-            .padding(vertical = 16.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        item.images.forEach {
-            item {
-                AsyncImage(
-                    model = it,
-                    contentDescription = item.title,
-                    modifier = Modifier
-                        .height(300.dp)
-                        .width(width.dp)
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(16.dp))
-                        .padding(8.dp)
-                )
-            }
+            .heightIn(max = 380.dp)
+            .padding(vertical = 16.dp)
+    ) { page ->
+        Surface(
+            shape = RoundedCornerShape(16.dp),
+            color = Color.White,
+            shadowElevation = 5.dp,
+            modifier = Modifier
+                .fillMaxHeight()
+                .fillMaxWidth(0.8f)
+        ) {
+            imgUrl.value = item.images[page]
+            AsyncImage(
+                model = imgUrl.value,
+                contentDescription = null,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .clip(RoundedCornerShape(16.dp))
+                    .fillMaxSize(),
+            )
         }
+
     }
 }
 
@@ -409,7 +424,7 @@ private fun ColorSelector(
                             .clickable(
                                 indication = null,
                                 interactionSource = interactionSource
-                            )  {
+                            ) {
                                 selectedMemoryIndex.value = index
                             },
                         shape = RoundedCornerShape(10.dp),

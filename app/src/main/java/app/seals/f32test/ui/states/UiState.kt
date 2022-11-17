@@ -15,4 +15,6 @@ sealed interface UiState {
     ) : UiState
     data class DetailsReady(val item: DetailsModel) : UiState
     data class CartReady(val cart: CartResponse) : UiState
+    data class Error(val code: Int?, val message: String?) : UiState
+    data class Exception(val e: Throwable?) : UiState
 }
