@@ -30,7 +30,11 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val state by vm.state.collectAsState()
                 Scaffold(
-                    bottomBar = { if(state is UiState.MainReady) BottomBar() }
+                    bottomBar = {
+                        if(state !is UiState.Error) BottomBar(
+                            navController = navController
+                        )
+                    }
                 ) {
                     Surface(
                         modifier = Modifier

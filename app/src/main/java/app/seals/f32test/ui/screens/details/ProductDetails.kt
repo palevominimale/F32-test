@@ -138,7 +138,7 @@ private fun ImagesRow(
         count = item.images.size,
         state = state,
         modifier = modifier
-            .heightIn(max = 380.dp)
+            .heightIn(max = 310.dp)
             .padding(vertical = 16.dp)
     ) { page ->
         Surface(
